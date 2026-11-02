@@ -1,0 +1,152 @@
+LOGIC LABYRINTH – FUNCTIONALITY EXPLANATION
+===========================================
+
+1. Overview
+This project is a turn-based dungeon RPG game built with Python and Tkinter for the graphical user interface. It combines a GUI-based game loop, Prolog data handling, and multiple room events such as combat, loot, shrine buffs, rest, and skill selection.
+
+2. Main Purpose
+The game lets the player explore a set of dungeon rooms, fight enemies, collect items, learn passive skills, and progress through multiple floors. The objective is to defeat all rooms on each floor, unlock the boss room, and eventually defeat the final boss.
+
+3. Technologies Used
+- Python: main game logic and interface
+- Tkinter: used for the GUI, buttons, labels, windows, and canvas drawing
+- SWI-Prolog: used as a data source for dungeon knowledge such as items, rooms, enemies, and boss data
+
+4. Game Structure
+The game is divided into several parts:
+- Prolog bridge: loads and queries game data from dungeon_logic.pl
+- GUI builder: creates the main game window, map, bars, inventory, log, and buttons
+- Battle engine: handles attacks, enemy turns, damage, and victory/defeat conditions
+- Room system: manages combat rooms, loot, rest, shrine, and skill rooms
+- Item system: handles pickups, stat boosts, passive effects, and consumables
+- Floor progression: advances the player through a series of dungeon floors
+
+5. Prolog Data Integration
+The Prolog file contains all game knowledge, including:
+- Items and rare relics
+- Enemy and boss statistics
+- Room metadata
+- Shrine buffs
+- Skill database
+- Floor generation rules
+
+The Python game uses query_prolog() to send goal queries to SWI-Prolog and parse the returned text into Python dictionaries and lists.
+
+6. Player Stats and Progression
+At the start of the game, the player has:
+- HP
+- max HP
+- ATK
+- DEF
+- Inventory
+- Passive skills
+
+These stats can be modified through:
+- Items found during exploration
+- Shrine blessings
+- Skill learning
+- Boss or enemy combat outcomes
+
+The player can also earn permanent bonuses from skills like:
+- Battle Trance (+ATK after each kill)
+- Fortify (+DEF after battle)
+- Endurance (increases max HP)
+
+7. Floor and Room System
+Each floor consists of several rooms. Rooms can be:
+- Combat rooms: enemy battles occur
+- Loot rooms: item drops are awarded
+- Shrine rooms: stat boosts are granted
+- Rest rooms: HP recovery
+- Skill rooms: player chooses one of three passive skills
+
+The map panel shows each room as a clickable button. Cleared rooms are marked as complete, while active rooms are clickable and can be entered.
+
+8. Combat System
+When the player enters a combat room, an enemy appears on the arena canvas. The player can:
+- Attack
+- Use item
+- Flee
+
+During battle:
+- The player deals damage based on ATK, DEF, and passive effects
+- The enemy attacks back after the player’s turn
+- Skills can affect damage, evade, healing, reduction, reflection, and status buffs
+- Bosses have special passives that change the mechanic of the fight
+
+9. Enemy and Boss Mechanics
+Regular enemies are drawn using sprite functions and have enemy stats such as HP, ATK, and DEF.
+Bosses have stronger stats and special abilities such as:
+- War Cry
+- Bone Armor
+- Regeneration
+- Phase Strike
+- Poison Cloud
+- Void Drain
+- Absolute Dominion
+
+These passives make boss fights more complex and strategic.
+
+10. Items and Relics
+Items are categorized into:
+- Weapon
+- Armor
+- Consumable
+- Trinket
+- Relic
+
+Items can provide:
+- Attack bonus
+- Defense bonus
+- HP recovery
+- Passive abilities
+
+Rare relics are especially powerful and can change the whole gameplay strategy. Some relics also grant unique passive effects such as:
+- Divine Cleave
+- Mirror Thorns
+- Second Wind
+- Vitality Surge
+- Eternal Ward
+
+11. Skill Room System
+The skill room lets the player choose one of three random passive skills, with a maximum of five learned skills. Skills add permanent or battle-based effects like:
+- Damage reduction
+- Extra attacks
+- HP regeneration
+- Counter attack
+- Bonus damage at low HP
+- Temporary stat boost
+
+12. Canvas Drawing and Sprites
+The project uses Tkinter Canvas to draw the characters, enemies, and battle scene. Each enemy has a separate sprite-drawing function that creates basic shapes like ovals, rectangles, polygons, and shading to resemble the enemy.
+
+This helps make the game visually clearer and more engaging for players.
+
+13. Battle Log and UI Feedback
+The game uses a scrolling text box to show logs such as:
+- room descriptions
+- damage dealt
+- passive skill triggers
+- item pickups
+- boss introductions
+- victory or defeat messages
+
+This makes the game easier to understand and more user-friendly.
+
+14. Victory and Defeat Conditions
+The player wins by defeating the final boss and completing the labyrinth.
+The player loses if their HP reaches zero and they cannot trigger a revive or survivability effect.
+
+15. Overall Functionality Summary
+This game is a dungeon exploration and combat system where the player:
+- enlists the help of GUI-driven room selection,
+- explores room types with unique mechanics,
+- fights enemies and bosses with strategy,
+- learns passive skills to improve character power,
+- collects items and relics,
+- advances through growing difficulty levels.
+
+It is a good example of combining game design, graphical interface development, and logic-based data modeling.
+
+16. Conclusion
+The code demonstrates how a game can integrate multiple systems together: battle logic, item mechanics, AI behavior, map navigation, Prolog-based data management, and GUI design. It is both functional and educational, showing how modern game systems can be built using Python and data-driven structure.
